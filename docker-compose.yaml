@@ -1,0 +1,37 @@
+services:
+  ollama-setup:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama-models:/root/.ollama
+    environment:
+      - OLLAMA_NUM_THREADS=9
+    entrypoint: >-
+      sh -c "
+      ollama serve &
+      sleep 10 &&
+      ollama pull deepseek-r1:1.5b &&
+      pkill ollama
+      "
+    healthcheck:
+      test: ["CMD", "test", "-f", "/root/.ollama/models/manifests/registry.ollama.ai/library/deepseek-r1/1.5b"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_NUM_THREADS=9
+    volumes:
+      - ollama-models:/root/.ollama
+    command: >-
+      serve
+    depends_on:
+      ollama-setup:
+        condition: service_healthy
+volumes:
+  ollama-models:
