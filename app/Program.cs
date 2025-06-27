@@ -7,19 +7,15 @@ Console.WriteLine("Hello, World!");
 var builder = Host.CreateApplicationBuilder();
 var pythonHome = Path.Join(Environment.CurrentDirectory, "./PythonFiles");
 
-builder.Services.WithPython().WithHome(pythonHome).FromRedistributable().WithPipInstaller().WithVirtualEnvironment(Path.Join(pythonHome, ".venv"));
+builder.Services.WithPython().WithHome(pythonHome).WithPipInstaller().WithVirtualEnvironment(Path.Join(pythonHome, ".venv")).FromRedistributable();
 
 var app = builder.Build();
 
 var pythonEnvironment = app.Services.GetRequiredService<IPythonEnvironment>();
 
-var pythonModule = pythonEnvironment.Example();
 
-var ollamaModule = pythonEnvironment.OllamaTest();
+var chromaDbModule = pythonEnvironment.ChromadbTest();
 
+var chromaTest = chromaDbModule.CreateAndFetchFromChromadb("which document contains information about fruits?");
 
-var response = await ollamaModule.Prompt("Hello!");
-
-Console.WriteLine(pythonModule.SumTwoNumbers(1, 2));
-
-Console.WriteLine(response);
+Console.WriteLine(chromaTest);
