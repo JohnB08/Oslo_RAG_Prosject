@@ -1,1 +1,2 @@
-CREATE EXTENSION vector
+\c vectordbtest;
+CREATE EXTENSION IF NOT EXISTS vector
