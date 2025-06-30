@@ -186,7 +186,7 @@ var chromaTest = chromaDbModule.CreateAndFetchFromChromadb("which document conta
 {'ids': [['0', '1']], 'embeddings': None, 'documents': [['Testdocument containing information about the import of fruit into the norwegian market!', 'Testdocument containing information about creating llms and working with vectorisation across a set of documents']], 'uris': None, 'included': ['metadatas', 'documents', 'distances'], 'data': None, 'metadatas': [[None, None]], 'distances': [[0.7562352418899536, 1.4355132579803467]]}
 ```
 
-Legg merke til at, i tillegg til to dokumentforslag i "documents" nøkkelen, har vi også et sett med tall som heter "distances". tallene der, representerer hvor "lang avstand" det er mellom vektorene for dokumentene våre, og vektoren til spørringen. 
+Legg merke til at, i tillegg til to dokumentforslag i "documents" nøkkelen, har vi også et sett med tall som heter "distances". tallene der, representerer hvor "lang avstand" det er mellom vektorene for dokumentene våre, og vektoren til spørringen. Jo nærmere 0, jo bedre. 
 Her ser vi, når vi spør "which document contains information about fruits?", at dokumentet som er "nærmest" i distanse er 'Testdocument containing information about the import of fruit into the norwegian market!'.
 Viktig å vite, at embedded llmer er ofte trent på engelsk språklig plain text.
 En av problemstillingene vi får senere, vil være å lage om et datasett til plain text.  
