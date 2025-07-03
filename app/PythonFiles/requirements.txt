@@ -1,3 +1,4 @@
 ollama
 asyncio
 chromadb
+sentence_transformers
