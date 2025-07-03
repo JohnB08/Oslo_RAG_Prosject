@@ -42,8 +42,7 @@ while (true)
 
     var prompt = Console.ReadLine();
 
-    if (string.IsNullOrWhiteSpace(prompt)) continue;
-    if (prompt == "exit" || prompt == "q" || prompt == "quit") break;
+    if (string.IsNullOrWhiteSpace(prompt)) break;
 
     var promptemb = sTModule.EmbeddPrompt(prompt);
     var promptVector = new Vector(promptemb.Select(num => (float)num).ToArray());
